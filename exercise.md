@@ -212,6 +212,134 @@ console.log(`palindromes using anonymous: ${findPalindromes(arr)}`);
 ```
 > palindromes using anonymous: helloolleh,mam,1881,131  
   palindromes using IIFE: helloolleh,mam,1881,131
+6. Median of 2 sorted arrays of same size
+```js
+let arr1 = [2, 5, 7, 19, 20, 17];
+let arr2 = [4, 6, 7, 12, 18, 21];
+// anonymous
+let findMedian = function(arr1, arr2) {
+    let len = arr1.length;
+    let newSorted = [];
+    let counter = 0;
+    let i = 0;
+    let j = 0;
+    while(true) {
+        if(arr1[i] < arr2[j]) {
+            newSorted.push(arr1[i]);
+            i++;
+            counter++;
+        } else if(arr2[j] < arr1[i]) {
+            newSorted.push(arr2[j]);
+            j++;
+            counter++;
+        } else {
+            newSorted.push(arr1[i]);
+            newSorted.push(arr2[j]);
+            i++;
+            j++;
+            counter += 2;
+        }
+        if(counter >= len + 1) {
+            break;
+        }
+    }
+    return (newSorted[len - 1] + newSorted[len]) / 2;
+}
+
+console.log(`Median anonymous: ${findMedian(arr1, arr2)}`);
+
+// IIFE
+(function(arr1, arr2) {
+    let len = arr1.length;
+    let newSorted = [];
+    let counter = 0;
+    let i = 0;
+    let j = 0;
+    while(true) {
+        if(arr1[i] < arr2[j]) {
+            newSorted.push(arr1[i]);
+            i++;
+            counter++;
+        } else if(arr2[j] < arr1[i]) {
+            newSorted.push(arr2[j]);
+            j++;
+            counter++;
+        } else {
+            newSorted.push(arr1[i]);
+            newSorted.push(arr2[j]);
+            i++;
+            j++;
+            counter += 2;
+        }
+        if(counter >= len + 1) {
+            break;
+        }
+    }
+    console.log(`Median IIFE: ${(newSorted[len-1] + newSorted[len]) / 2}`);
+})(arr1, arr2);
+```
+> Median anonymous: 9.5  
+  Median IIFE: 9.5
+7. Remove duplicates from array:
+```js
+let arr = [2, 5, "hello", 5, "hello", 2];
+// anonymous
+let removeDuplicates = function(arr) {
+    let newArr = [];
+    for(let element of arr) {
+        if(!newArr.includes(element)) {
+            newArr.push(element);
+        }
+    }
+    return newArr;
+};
+
+console.log(`anonymous : ${removeDuplicates(arr)}`);
+
+(function(arr) {
+    let newArr = [];
+    for(let element of arr) {
+        if(!newArr.includes(element)) {
+            newArr.push(element);
+        }
+    }
+    console.log(`IIFE: ${newArr}`);
+})(arr);
+```
+> anonymous : 2,5,hello  
+  IIFE: 2,5,hello
+8. Rotate array by k times:
+```js
+let arr = [1, 2, 3, "hello", "pip", 5, 7];
+// anonymous
+let rotate = function(arr, k) {
+    if(arr.length > 1) {
+        for(let i = 0; i < k; i++) {
+            let first = arr.shift();
+            arr.push(first);
+        }
+    }
+    return arr;
+}
+
+console.log(`anonymous: ${rotate(arr, 2)}`);
+
+// IIFE
+arr = [1, 2, 3, "hello", "pip", 5, 7];
+
+(function(arr, k) {
+    if(arr.length > 1) {
+        for(let i = 0; i < k; i++) {
+            let first = arr.shift();
+            arr.push(first);
+        }
+    }
+    console.log(`IIFE: ${arr}`);
+})(arr, 2);
+```
+> anonymous: 3,hello,pip,5,7,1,2  
+  IIFE: 3,hello,pip,5,7,1,2
+
 
 
 
