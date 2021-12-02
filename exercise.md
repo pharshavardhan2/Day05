@@ -339,7 +339,121 @@ arr = [1, 2, 3, "hello", "pip", 5, 7];
 ```
 > anonymous: 3,hello,pip,5,7,1,2  
   IIFE: 3,hello,pip,5,7,1,2
+### Q3. Using arrow functions:
+1. print odd nos
+```js
+let arr = [2, 19, 4, 13, 145, 12, 139, 157];
+// arrow
+let printOdd = (arr) => {
+  console.log("Output using anonymous: ")
+  for(let num of arr) {
+    if(num % 2 !== 0) {
+      console.log(num);
+    }
+  }
+};
+```
+> 19  
+  13  
+  145  
+  139  
+  157  
+2. strings to title cap
+```js
+let arr = ["helLo wORld", "hOW aRe yOu", "WHY aRE u"]; // dummy array of strings
 
+// arrow
+let toTitle = (arr) => {
+    console.log("Output using anonymous: ");
+    for(let str of arr) {
+        let upper = true;
+        let newStr = "";
+        
+        for(let ch of str) {
+            if(ch == " ") {
+                upper = true;
+                newStr += ch;
+                continue;
+            }
+            newStr += upper ? ch.toUpperCase() : ch.toLowerCase();
+            upper = false;
+        }
+        console.log(newStr);
+    }
+}
 
+toTitle(arr);
+```
+> Hello World  
+  How Are You  
+  Why Are U
+3. sum of nums:
+```js
+let arr = [10, 1486, 2885, 17456, 155]; // dummy array of nos
+// array
+let sum = (arr) => {
+    console.log("Output using anonymous: ");
+    let result = 0;
+    for(let num of arr) {
+        result += num;
+    }
+    console.log(`Sum = ${result}`);
+}
+
+sum(arr);
+```
+> Sum = 21992
+4. primes
+```js
+let arr = [4, 2, 7, 23, 37, 18, 13, 33, 81, 101]; // dummy array of nums
+// arrow
+let findPrimes = (arr) => {
+    let primes = [];
+    for(let num of arr) {
+        if(num % 2 === 0) {
+            continue;
+        }
+        let isPrime = true;
+        for(let i = 3; i < num ** 0.5 + 1; i += 2) {
+            if(num % i === 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if(isPrime) {
+            primes.push(num);
+        }
+    }
+    return primes;
+}
+
+console.log(`primes using arrow: ${findPrimes(arr)}`);
+```
+> primes using arrow: 7,23,37,13,101
+5. palindromes
+```js
+let arr = ["helloolleh", "mam", "movie", "1881", "131", "world"];
+// arrow
+let findPalindromes = function(arr) {
+    let palindromes = [];
+    for(let str of arr) {
+        let len = str.length;
+        let isPalindrome = true;
+        for(let i = 0; i < Math.floor(len / 2); i++) {
+            if(str[i] !== str[len - 1 - i]) {
+                isPalindrome = false;
+                break;
+            }
+        }
+        if(isPalindrome) {
+            palindromes.push(str);
+        }
+    }
+    return palindromes;
+}
+
+console.log(`palindromes using arrow: ${findPalindromes(arr)}`);
+```
+> palindromes using arrow: helloolleh,mam,1881,131
 
 
